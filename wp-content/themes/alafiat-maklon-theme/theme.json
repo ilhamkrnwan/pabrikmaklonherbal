@@ -1,0 +1,86 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "Alafiat Maklon Herbal",
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "color": {
+      "palette": [
+        {
+          "slug": "pine",
+          "color": "#153E37",
+          "name": "Pine Green"
+        },
+        {
+          "slug": "pine-hover",
+          "color": "#0E2C27",
+          "name": "Pine Green Dark"
+        },
+        {
+          "slug": "olive",
+          "color": "#7C9C26",
+          "name": "Olive"
+        },
+        {
+          "slug": "olive-bright",
+          "color": "#C5E25C",
+          "name": "Olive Bright"
+        },
+        {
+          "slug": "olive-dark",
+          "color": "#4B6310",
+          "name": "Olive Dark"
+        },
+        {
+          "slug": "canvas",
+          "color": "#EBEEEC",
+          "name": "Canvas Background"
+        },
+        {
+          "slug": "panel",
+          "color": "#FFFFFF",
+          "name": "Panel White"
+        },
+        {
+          "slug": "soft",
+          "color": "#F3F5F4",
+          "name": "Soft Background"
+        },
+        {
+          "slug": "ink",
+          "color": "#131B1A",
+          "name": "Ink Primary"
+        },
+        {
+          "slug": "ink-muted",
+          "color": "#475552",
+          "name": "Ink Muted"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "\"Onest\", system-ui, -apple-system, sans-serif",
+          "name": "Onest",
+          "slug": "onest"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1280px",
+      "wideSize": "1440px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--canvas)",
+      "text": "var(--wp--preset--color--ink)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--onest)",
+      "lineHeight": "1.6"
+    }
+  }
+}

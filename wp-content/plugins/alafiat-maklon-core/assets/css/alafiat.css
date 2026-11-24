@@ -1,0 +1,246 @@
+/* ==========================================================================
+   Alafiat Maklon Herbal - Core Stylesheet
+   ========================================================================== */
+
+:root {
+  --bg-canvas: #EBEEEC;
+  --bg-panel: #FFFFFF;
+  --bg-soft: #F3F5F4;
+  --border-subtle: #DCE2DF;
+  --brand-pine: #153E37;
+  --brand-pine-hover: #0E2C27;
+  --brand-pine-tint: #E7F0EE;
+  --brand-olive: #7C9C26;
+  --brand-olive-bright: #C5E25C;
+  --brand-olive-dark: #4B6310;
+  --ink-primary: #131B1A;
+  --ink-secondary: #475552;
+  --ink-on-dark: #FFFFFF;
+  --ink-muted-dark: #D2E2DF;
+  --alafiat-button-size: 44px;
+  --alafiat-button-radius: 9999px;
+  --alafiat-button-padding: 16px;
+  --alafiat-button-ink: var(--brand-pine);
+  --alafiat-button-muted-border: #718878;
+  --alafiat-button-inverse: var(--ink-on-dark);
+  color-scheme: light;
+}
+
+/* Action links, filters and icon buttons share one outline treatment. */
+:is(
+  .alafiat-wrapper a[data-wa-cta],
+  .alafiat-wrapper :where(#top, [data-alafiat-anchor="top"]) a:is([href="#sediaan"], [data-alafiat-link-target="#sediaan"], [href="#simulasi"], [data-alafiat-link-target="#simulasi"]),
+  .alafiat-wrapper .tab-btn,
+  .alafiat-catalog-tabs button,
+  [id="preview-concept-picker"] button,
+  .alafiat-product-cta,
+  .alafiat-card-arrow,
+  .alafiat-archive-arrow
+) {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--alafiat-button-size);
+  padding: 8px var(--alafiat-button-inline-padding, var(--alafiat-button-padding));
+  border: 1px solid var(--alafiat-button-border, var(--alafiat-button-ink));
+  border-radius: var(--alafiat-button-radius);
+  background: var(--alafiat-button-fill, transparent);
+  color: var(--alafiat-button-label, var(--alafiat-button-ink));
+  box-shadow: none;
+  line-height: 1.3;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+:is(
+  .alafiat-wrapper a[data-wa-cta],
+  .alafiat-wrapper :where(#top, [data-alafiat-anchor="top"]) a:is([href="#sediaan"], [data-alafiat-link-target="#sediaan"], [href="#simulasi"], [data-alafiat-link-target="#simulasi"]),
+  .alafiat-wrapper .tab-btn,
+  .alafiat-catalog-tabs button,
+  [id="preview-concept-picker"] button,
+  .alafiat-product-cta,
+  .alafiat-card-arrow,
+  .alafiat-archive-arrow
+):is(:hover, [aria-pressed="true"]) {
+  border-color: var(--alafiat-button-hover-fill, var(--alafiat-button-ink));
+  background: var(--alafiat-button-hover-fill, var(--alafiat-button-ink));
+  color: var(--alafiat-button-inverse);
+}
+
+:is(.alafiat-wrapper [data-wa-cta="hero_utama"], .alafiat-product-cta) {
+  --alafiat-button-fill: var(--alafiat-button-ink);
+  --alafiat-button-label: var(--alafiat-button-inverse);
+}
+
+:is(.alafiat-card-arrow, .alafiat-archive-arrow) {
+  --alafiat-button-border: var(--alafiat-button-muted-border);
+  --alafiat-button-inline-padding: 0px;
+
+  inline-size: var(--alafiat-button-size);
+  block-size: var(--alafiat-button-size);
+}
+
+:is(.alafiat-card-arrow, .alafiat-archive-arrow)::before {
+  width: 18px;
+  height: 18px;
+  background: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round' d='M6 18 18 6M7 6h11v11'/%3E%3C/svg%3E") center / contain no-repeat;
+  content: "";
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.alafiat-product-cta, .alafiat-archive-arrow, .alafiat-catalog-tabs button, [id="preview-concept-picker"] button) {
+    transition: none;
+  }
+}
+
+html.dark {
+  --bg-canvas: #080C0B;
+  --bg-panel: rgba(18, 30, 27, 0.72);
+  --bg-soft: rgba(255, 255, 255, 0.05);
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --brand-pine: rgba(18, 48, 40, 0.85);
+  --brand-pine-hover: rgba(24, 60, 50, 0.95);
+  --brand-pine-tint: rgba(78, 204, 163, 0.14);
+  --brand-olive: #98CF38;
+  --brand-olive-bright: #C5E25C;
+  --brand-olive-dark: #86C1AE;
+  --ink-primary: #F4F7F5;
+  --ink-secondary: #9DB3AA;
+  --ink-on-dark: #FFFFFF;
+  --ink-muted-dark: #A3B8B0;
+  color-scheme: dark;
+}
+
+body.alafiat-body {
+  font-family: "Onest", system-ui, -apple-system, sans-serif !important;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-primary);
+  background-color: var(--bg-canvas) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+html.dark body.alafiat-body {
+  background-color: #080C0B !important;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(20, 68, 56, 0.38), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 95% 40%, rgba(16, 52, 43, 0.25), transparent 60%),
+    radial-gradient(ellipse 55% 55% at 5% 85%, rgba(20, 68, 56, 0.25), transparent 60%);
+  background-attachment: fixed;
+}
+
+.type-h1 {
+  font-size: clamp(2.15rem, 3.8vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.type-h2 {
+  font-size: clamp(1.65rem, 2.5vw, 2.15rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.type-h3 {
+  font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+/* Glassmorphism Panels */
+.bg-panel {
+  background-color: var(--bg-panel);
+}
+
+.bg-soft {
+  background-color: var(--bg-soft);
+}
+
+.border-subtle {
+  border-color: var(--border-subtle);
+}
+
+.text-ink {
+  color: var(--ink-primary);
+}
+
+.text-inkMuted {
+  color: var(--ink-secondary);
+}
+
+.bg-pine {
+  background-color: var(--brand-pine);
+}
+
+.text-pine {
+  color: var(--brand-pine);
+}
+
+.border-pine {
+  border-color: var(--brand-pine);
+}
+
+.bg-oliveBright {
+  background-color: var(--brand-olive-bright);
+}
+
+.text-oliveBright {
+  color: var(--brand-olive-bright);
+}
+
+.text-oliveDark {
+  color: var(--brand-olive-dark);
+}
+
+html.dark .bg-panel {
+  background-color: rgba(18, 30, 27, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.40), inset 0 1px 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+html.dark .bg-soft {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+html.dark .bg-pine {
+  background: linear-gradient(145deg, rgba(21, 62, 55, 0.88) 0%, rgba(13, 38, 33, 0.92) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+html.dark .text-pine {
+  color: #4ECCA3;
+}
+
+/* Transition Utilities */
+.transition-colors {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Sticky Bottom Floating Bar */
+.sticky-safe-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}

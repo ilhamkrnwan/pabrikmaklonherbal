@@ -1,0 +1,101 @@
+# ==============================================================================
+# .gitignore for WordPress (Custom Development)
+# Hanya men-track custom code, docs, & custom theme/plugin
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. WordPress Core (Folder & Root Files)
+# ------------------------------------------------------------------------------
+/wp-admin/
+/wp-includes/
+/index.php
+/license.txt
+/readme.html
+/wp-*.php
+/xmlrpc.php
+
+# ------------------------------------------------------------------------------
+# 2. Server & Environment Configuration
+# ------------------------------------------------------------------------------
+/.htaccess
+/wp-config.php
+.env
+.env.*
+!.env.example
+
+# ------------------------------------------------------------------------------
+# 3. Default Themes, Plugins, & Index Bawaan WordPress
+# ------------------------------------------------------------------------------
+/wp-content/themes/twenty*
+/wp-content/plugins/akismet/
+/wp-content/plugins/hello.php
+/wp-content/index.php
+/wp-content/plugins/index.php
+/wp-content/themes/index.php
+
+# ------------------------------------------------------------------------------
+# 4. User Media & Uploads (Kecualikan aset awal di uploads/alafiat)
+# ------------------------------------------------------------------------------
+/wp-content/uploads/*
+!/wp-content/uploads/alafiat/
+!/wp-content/uploads/index.php
+
+# ------------------------------------------------------------------------------
+# 5. Cache, Upgrades, & Temporary Files
+# ------------------------------------------------------------------------------
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/advanced-cache.php
+/wp-content/wp-cache-config.php
+/wp-content/blogs.dir/
+
+# ------------------------------------------------------------------------------
+# 6. Logs & Debugging
+# ------------------------------------------------------------------------------
+*.log
+debug.log
+/wp-content/debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ------------------------------------------------------------------------------
+# 7. Database Backups & Dumps
+# ------------------------------------------------------------------------------
+*.sql
+*.sql.gz
+*.sqlite
+/wp-content/backup-db/
+/wp-content/backups/
+
+# ------------------------------------------------------------------------------
+# 8. Dependencies & Package Managers
+# ------------------------------------------------------------------------------
+node_modules/
+/vendor/
+composer.phar
+.pnpm-store/
+
+# ------------------------------------------------------------------------------
+# 9. IDE, Editor, & OS Junk
+# ------------------------------------------------------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/

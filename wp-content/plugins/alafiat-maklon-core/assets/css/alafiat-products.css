@@ -1,0 +1,303 @@
+body.alafiat-body {
+  --bg-canvas: #f4f4ee;
+}
+
+.alafiat-product-hub,
+.alafiat-product-page {
+  box-sizing: border-box;
+  width: min(100%, 1216px);
+  margin-inline: auto;
+  padding: clamp(20px, 4vw, 56px) clamp(16px, 4vw, 48px);
+}
+
+.alafiat-product-hub > header > a,
+.alafiat-product-back a,
+.alafiat-product-link {
+  color: var(--brand-pine);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.alafiat-product-hub h1,
+.alafiat-product-page h1.wp-block-post-title,
+.alafiat-product-page .alafiat-archive-heading {
+  margin-block: 12px clamp(16px, 3vw, 32px);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+}
+
+.alafiat-product-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 52px);
+  align-items: start;
+}
+
+.alafiat-product-view > .alafiat-single-info:only-child {
+  grid-column: 1 / -1;
+}
+
+#preview-stage,
+.alafiat-single-photo {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.alafiat-single-photo {
+  aspect-ratio: 4 / 3;
+}
+
+.alafiat-single-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.alafiat-catalog-tabs button,
+#preview-concept-picker button {
+  --alafiat-button-border: var(--alafiat-button-muted-border);
+
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.alafiat-product-cta,
+.alafiat-product-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.alafiat-product-cta {
+  --alafiat-button-hover-fill: var(--brand-pine-hover);
+}
+
+.alafiat-product-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--alafiat-button-size);
+}
+
+:is(.alafiat-product-hub, .alafiat-product-page) :is(a, button):focus-visible {
+  outline: 2px solid var(--brand-pine);
+  outline-offset: 3px;
+}
+
+.alafiat-product-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.alafiat-single-description {
+  max-width: 58ch;
+  color: var(--ink-secondary);
+}
+
+.alafiat-single-specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 16px;
+  margin-block: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.alafiat-single-specs > div,
+.alafiat-catalog-detail-list > li {
+  padding-block: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.alafiat-single-specs dt,
+.alafiat-catalog-detail-list p {
+  color: var(--ink-secondary);
+  font-size: 0.875rem;
+}
+
+.alafiat-single-specs dd,
+.alafiat-catalog-detail-list h3 {
+  margin: 0;
+  font-weight: 600;
+}
+
+.alafiat-catalog-details {
+  padding-top: clamp(18px, 3vw, 32px);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.alafiat-catalog-detail-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(18px, 4vw, 40px);
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.alafiat-single-product > .alafiat-catalog-details {
+  margin-top: clamp(28px, 4vw, 52px);
+}
+
+.alafiat-product-media > :not(:first-child) {
+  margin-top: 10px;
+}
+
+.alafiat-product-media > p:empty,
+.alafiat-product-thumbnails:empty {
+  display: none;
+}
+
+.alafiat-product-media > p {
+  color: var(--ink-secondary);
+  font-size: 0.75rem;
+}
+
+.alafiat-product-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+  gap: 8px;
+}
+
+.alafiat-product-thumbnails .thumb-btn {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  background: var(--bg-soft);
+  cursor: pointer;
+}
+
+.alafiat-product-thumbnails .thumb-btn:is(:hover, [aria-pressed="true"]) {
+  border-color: var(--brand-pine);
+}
+
+.alafiat-product-thumbnails .thumb-btn[aria-pressed="true"] {
+  border-width: 2px;
+}
+
+.alafiat-product-thumbnails img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.alafiat-product-variants {
+  margin-block: 18px;
+}
+
+.alafiat-product-variants h2 {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.alafiat-product-variants #preview-concept-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.alafiat-product-variants #preview-concept-description {
+  margin-top: 8px;
+  color: var(--ink-secondary);
+  font-size: 0.875rem;
+}
+
+.alafiat-product-archive .alafiat-archive-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.alafiat-product-archive .alafiat-archive-grid > li {
+  min-width: 0;
+  margin-block: 0;
+}
+
+.alafiat-archive-photo {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  margin: 0 0 14px;
+  border-radius: 16px;
+  background: var(--bg-soft);
+}
+
+.alafiat-archive-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.alafiat-product-archive .alafiat-archive-info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  align-content: start;
+  gap: 4px 12px;
+}
+
+.alafiat-product-archive .alafiat-archive-info > :is(.alafiat-archive-meta, .alafiat-archive-title, .alafiat-archive-excerpt, .alafiat-archive-arrow) {
+  margin: 0;
+}
+
+.alafiat-archive-meta {
+  grid-column: 1 / -1;
+  color: var(--ink-secondary);
+  font-size: 0.75rem;
+}
+
+.alafiat-archive-title {
+  grid-column: 1;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.alafiat-archive-excerpt {
+  grid-column: 1;
+  color: var(--ink-secondary);
+  font-size: 0.875rem;
+}
+
+.alafiat-archive-arrow {
+  position: relative;
+  grid-column: 2;
+  grid-row: 2 / span 2;
+  align-self: start;
+  font-size: 0;
+}
+
+.alafiat-archive-arrow::before {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 960px) {
+  .alafiat-product-archive .alafiat-archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 740px) {
+  .alafiat-product-view,
+  .alafiat-catalog-detail-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .alafiat-product-archive .alafiat-archive-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
