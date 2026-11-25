@@ -173,8 +173,9 @@ add_filter('render_block_core/post-featured-image', 'alafiat_archive_photo_fallb
 
 function alafiat_product_card_meta($post_id) {
     $minimum = preg_replace('/^Mulai\s+/i', '', (string) get_post_meta($post_id, '_alafiat_moq', true));
+    $jalur = get_post_meta($post_id, '_alafiat_jalur', true);
     $permit = get_post_meta($post_id, '_alafiat_izin', true);
-    $facts = array_filter(array($minimum !== '' ? 'MOQ ' . $minimum : '', $permit));
+    $facts = array_filter(array($minimum !== '' ? 'MOQ ' . $minimum : $jalur, $permit));
     return $facts ? '<p class="alafiat-archive-meta">' . esc_html(implode(' · ', $facts)) . '</p>' : '';
 }
 

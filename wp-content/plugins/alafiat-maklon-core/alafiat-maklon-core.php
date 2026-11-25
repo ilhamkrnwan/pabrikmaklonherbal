@@ -39,7 +39,7 @@ function alafiat_enqueue_assets() {
         'alafiat-core-css',
         ALAFIAT_CORE_URL . 'assets/css/alafiat.css',
         array(),
-        '1.0.3'
+        '1.0.4'
     );
 
     $is_block_landing = is_front_page() && has_block('alafiat/landing-element', get_queried_object_id());
@@ -51,7 +51,7 @@ function alafiat_enqueue_assets() {
             'alafiat-landing-css',
             ALAFIAT_CORE_URL . 'assets/css/alafiat-landing.css',
             $is_block_landing ? array('alafiat-core-css', 'alafiat-landing-utilities-css') : array('alafiat-core-css'),
-            '1.3.7'
+            '1.4.2'
         );
     }
 
@@ -89,7 +89,32 @@ function alafiat_enqueue_assets() {
         'alafiat-viewer-js',
         ALAFIAT_CORE_URL . 'assets/js/alafiat-viewer.js',
         array(),
-        '1.2.1',
+        '1.2.2',
+        true
+    );
+
+    // 6. GSAP & Smooth ScrollTrigger Animations
+    wp_enqueue_script(
+        'alafiat-gsap',
+        ALAFIAT_CORE_URL . 'assets/vendor/gsap/gsap.min.js',
+        array(),
+        '3.15.1',
+        true
+    );
+
+    wp_enqueue_script(
+        'alafiat-gsap-scrolltrigger',
+        ALAFIAT_CORE_URL . 'assets/vendor/gsap/ScrollTrigger.min.js',
+        array('alafiat-gsap'),
+        '3.15.1',
+        true
+    );
+
+    wp_enqueue_script(
+        'alafiat-animations-js',
+        ALAFIAT_CORE_URL . 'assets/js/alafiat-animations.js',
+        array('alafiat-gsap', 'alafiat-gsap-scrolltrigger', 'alafiat-simulasi-js'),
+        '1.1.0',
         true
     );
 
@@ -126,7 +151,7 @@ function alafiat_enqueue_landing_editor_assets() {
         'alafiat-editor-landing-css',
         ALAFIAT_CORE_URL . 'assets/css/alafiat-landing.css',
         array('alafiat-editor-core-css', 'alafiat-editor-utilities-css'),
-        '1.3.7'
+        '1.4.2'
     );
 }
 add_action('enqueue_block_assets', 'alafiat_enqueue_landing_editor_assets');

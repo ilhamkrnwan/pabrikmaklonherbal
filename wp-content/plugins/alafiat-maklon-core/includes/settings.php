@@ -73,7 +73,7 @@ function alafiat_render_settings_page() {
                 <tr>
                     <th scope="row"><label for="alafiat_moq_starter">Ketentuan MOQ Starter</label></th>
                     <td>
-                        <input name="alafiat_moq_starter" type="text" id="alafiat_moq_starter" value="<?php echo esc_attr(get_option('alafiat_moq_starter', 'Mulai 250 pcs / batch')); ?>" class="regular-text" />
+                        <input name="alafiat_moq_starter" type="text" id="alafiat_moq_starter" value="<?php echo esc_attr(get_option('alafiat_moq_starter', '')); ?>" class="regular-text" placeholder="Menyesuaikan sediaan & jalur" />
                     </td>
                 </tr>
             </table>

@@ -118,6 +118,33 @@ function alafiat_render_landing_group($content, $block) {
         }
         return $processor->get_updated_html();
     }
+    if (in_array('alafiat-portfolio-grid', $classes, true)) {
+        $processor = new WP_HTML_Tag_Processor($content);
+        if ($processor->next_tag(array('class_name' => 'alafiat-portfolio-grid'))) {
+            $processor->set_attribute('role', 'region');
+            $processor->set_attribute('aria-label', 'Daftar portofolio dan testimoni');
+            $processor->set_attribute('tabindex', '0');
+        }
+        return $processor->get_updated_html();
+    }
+    if (in_array('alafiat-cert-grid', $classes, true)) {
+        $processor = new WP_HTML_Tag_Processor($content);
+        if ($processor->next_tag(array('class_name' => 'alafiat-cert-grid'))) {
+            $processor->set_attribute('role', 'region');
+            $processor->set_attribute('aria-label', 'Daftar sertifikat resmi pabrik');
+            $processor->set_attribute('tabindex', '0');
+        }
+        return $processor->get_updated_html();
+    }
+    if (in_array('alafiat-cert-grid', $classes, true)) {
+        $processor = new WP_HTML_Tag_Processor($content);
+        if ($processor->next_tag(array('class_name' => 'alafiat-cert-grid'))) {
+            $processor->set_attribute('role', 'region');
+            $processor->set_attribute('aria-label', 'Daftar sertifikat resmi pabrik');
+            $processor->set_attribute('tabindex', '0');
+        }
+        return $processor->get_updated_html();
+    }
     return $content;
 }
 add_filter('render_block_core/group', 'alafiat_render_landing_group', 10, 2);

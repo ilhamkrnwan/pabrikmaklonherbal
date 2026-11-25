@@ -308,7 +308,7 @@ div.alafiat-wrapper {
 }
 
 /* Landing sections share an open layout and a single rule between chapters. */
-.alafiat-wrapper > :is(:is(#sediaan, [data-alafiat-anchor="sediaan"]), :is(#proses, [data-alafiat-anchor="proses"]), :is(#faq, [data-alafiat-anchor="faq"])) {
+.alafiat-wrapper > :is(:is(#sediaan, [data-alafiat-anchor="sediaan"]), :is(#legalitas, [data-alafiat-anchor="legalitas"]), :is(#proses, [data-alafiat-anchor="proses"]), :is(#sertifikat, [data-alafiat-anchor="sertifikat"]), :is(#mitra, [data-alafiat-anchor="mitra"]), :is(#testimoni, [data-alafiat-anchor="testimoni"]), :is(#faq, [data-alafiat-anchor="faq"])) {
   padding: clamp(24px, 3vw, 40px) 0 0;
   border: 0;
   border-top: 1px solid var(--landing-rule);
@@ -317,11 +317,11 @@ div.alafiat-wrapper {
   box-shadow: none;
 }
 
-.alafiat-wrapper :is(:is(#sediaan, [data-alafiat-anchor="sediaan"]) > div:first-child > div:first-child, :is(#proses, [data-alafiat-anchor="proses"]) > div:first-child, :is(#faq, [data-alafiat-anchor="faq"]) > div:first-child, :is(#simulasi, [data-alafiat-anchor="simulasi"]) > div:first-child > div:first-child) > span:first-child {
+.alafiat-wrapper :is(:is(#sediaan, [data-alafiat-anchor="sediaan"]) > div:first-child > div:first-child, :is(#legalitas, [data-alafiat-anchor="legalitas"]) > div:first-child, :is(#proses, [data-alafiat-anchor="proses"]) > div:first-child, :is(#sertifikat, [data-alafiat-anchor="sertifikat"]) > div:first-child > div:first-child, :is(#mitra, [data-alafiat-anchor="mitra"]) > div:first-child, :is(#testimoni, [data-alafiat-anchor="testimoni"]) > div:first-child > div:first-child, :is(#faq, [data-alafiat-anchor="faq"]) > div:first-child, :is(#simulasi, [data-alafiat-anchor="simulasi"]) > div:first-child > div:first-child) > span:first-child {
   display: none;
 }
 
-.alafiat-wrapper :is(:is(#sediaan, [data-alafiat-anchor="sediaan"]), :is(#proses, [data-alafiat-anchor="proses"]), :is(#faq, [data-alafiat-anchor="faq"]), :is(#simulasi, [data-alafiat-anchor="simulasi"])) .type-h2 + p {
+.alafiat-wrapper :is(:is(#sediaan, [data-alafiat-anchor="sediaan"]), :is(#legalitas, [data-alafiat-anchor="legalitas"]), :is(#proses, [data-alafiat-anchor="proses"]), :is(#sertifikat, [data-alafiat-anchor="sertifikat"]), :is(#mitra, [data-alafiat-anchor="mitra"]), :is(#testimoni, [data-alafiat-anchor="testimoni"]), :is(#faq, [data-alafiat-anchor="faq"]), :is(#simulasi, [data-alafiat-anchor="simulasi"])) .type-h2 + p {
   max-width: 64ch;
   margin-top: 10px;
   font-size: 1rem;
@@ -711,6 +711,289 @@ div.alafiat-wrapper {
   line-height: 1.5;
 }
 
+/* Portfolio and testimonials */
+.alafiat-wrapper .alafiat-portfolio {
+  min-inline-size: 0;
+  display: grid;
+  gap: 22px;
+}
+
+.alafiat-wrapper .alafiat-portfolio-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 24px;
+}
+
+.alafiat-wrapper .alafiat-portfolio-cta {
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.alafiat-wrapper .alafiat-portfolio-grid {
+  min-inline-size: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(275px, 36%, 390px);
+  gap: clamp(16px, 2vw, 24px);
+  overflow-x: auto;
+  padding: 4px 4px 14px;
+  scroll-padding-inline: 4px;
+  scroll-snap-type: x proximity;
+  scrollbar-gutter: stable;
+}
+
+.alafiat-wrapper .alafiat-portfolio-grid:focus-visible {
+  outline: 2px solid var(--landing-pine);
+  outline-offset: 3px;
+}
+
+.alafiat-wrapper .alafiat-portfolio-card {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 14px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  scroll-snap-align: start;
+}
+
+.alafiat-wrapper .alafiat-portfolio-photo {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--landing-radius-panel);
+  background: var(--landing-tint);
+}
+
+.alafiat-wrapper .alafiat-portfolio-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.editor-styles-wrapper .alafiat-portfolio-photo img {
+  height: 100% !important;
+}
+
+.alafiat-wrapper .alafiat-portfolio-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 0 10px;
+}
+
+.alafiat-wrapper .alafiat-portfolio-meta {
+  color: var(--landing-muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.alafiat-wrapper .alafiat-portfolio-body h3 {
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+
+.alafiat-wrapper .alafiat-portfolio-quote {
+  display: grid;
+  gap: 6px;
+  margin: 2px 0 0;
+  padding: 10px 0 0;
+  border: 0;
+  border-top: 1px solid var(--landing-rule);
+}
+
+.alafiat-wrapper .alafiat-portfolio-quote p {
+  color: var(--landing-ink);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.alafiat-wrapper .alafiat-portfolio-quote p::before {
+  content: "“";
+}
+
+.alafiat-wrapper .alafiat-portfolio-quote p::after {
+  content: "”";
+}
+
+.alafiat-wrapper .alafiat-portfolio-quote cite {
+  color: var(--landing-muted);
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* Certificates and partner brands */
+.alafiat-wrapper .alafiat-certificates,
+.alafiat-wrapper .alafiat-partners {
+  min-inline-size: 0;
+  display: grid;
+  gap: 22px;
+  padding: clamp(24px, 3vw, 40px) 0 0;
+  border-top: 1px solid var(--landing-rule);
+}
+
+.alafiat-wrapper :is(.alafiat-certificates, .alafiat-partners) .type-h2 + p {
+  max-width: 64ch;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.alafiat-wrapper .alafiat-cert-grid {
+  min-inline-size: 0;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(235px, 24%, 290px);
+  gap: clamp(14px, 1.8vw, 20px);
+  overflow-x: auto;
+  padding: 4px 4px 14px;
+  scroll-padding-inline: 4px;
+  scroll-snap-type: x proximity;
+  scrollbar-gutter: stable;
+}
+
+.alafiat-wrapper .alafiat-cert-grid:focus-visible {
+  outline: 2px solid var(--landing-pine);
+  outline-offset: 3px;
+}
+
+.alafiat-wrapper .alafiat-cert-card {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 14px;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  scroll-snap-align: start;
+}
+
+.alafiat-wrapper .alafiat-cert-photo {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid var(--landing-rule);
+  border-radius: var(--landing-radius-panel);
+  background: #ffffff;
+}
+
+.alafiat-wrapper .alafiat-cert-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.editor-styles-wrapper .alafiat-cert-photo img {
+  height: 100% !important;
+}
+
+.alafiat-wrapper .alafiat-cert-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 0 10px;
+}
+
+.alafiat-wrapper .alafiat-cert-meta {
+  color: var(--landing-muted);
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.alafiat-wrapper .alafiat-cert-body h3 {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.alafiat-wrapper .alafiat-cert-detail {
+  margin-top: 2px;
+  color: var(--landing-muted);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.alafiat-wrapper .alafiat-cert-link {
+  margin: auto 0 0;
+  padding-top: 4px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--landing-pine);
+}
+
+.alafiat-wrapper .alafiat-cert-link a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.alafiat-wrapper .alafiat-partner-grid {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.8vw, 20px);
+}
+
+.alafiat-wrapper .alafiat-partner-card {
+  min-inline-size: 0;
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: start;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  text-align: center;
+}
+
+.alafiat-wrapper .alafiat-partner-card > * {
+  margin-block: 0;
+}
+
+.alafiat-wrapper .alafiat-partner-logo {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 112px;
+  margin: 0;
+  padding: 18px 22px;
+  overflow: hidden;
+  border: 1px solid var(--landing-rule);
+  border-radius: var(--landing-radius-panel);
+  background: #ffffff;
+}
+
+.alafiat-wrapper .alafiat-partner-logo img {
+  display: block;
+  max-width: 100%;
+  max-height: 68px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.editor-styles-wrapper .alafiat-partner-logo img {
+  width: auto !important;
+  max-height: 68px !important;
+}
+
+.alafiat-wrapper .alafiat-partner-name {
+  margin: 0;
+  color: var(--landing-muted);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
 .alafiat-wrapper :is(#faq, [data-alafiat-anchor="faq"]) {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
@@ -906,6 +1189,10 @@ div.alafiat-wrapper {
   .alafiat-wrapper .alafiat-footer-brand {
     grid-column: 1 / -1;
   }
+
+  .alafiat-wrapper .alafiat-partner-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 740px) {
@@ -928,9 +1215,26 @@ div.alafiat-wrapper {
     min-inline-size: 0;
     scroll-snap-align: start;
   }
+
+  .alafiat-wrapper .alafiat-portfolio-grid {
+    grid-auto-columns: min(84%, 340px);
+  }
+
+  .alafiat-wrapper .alafiat-cert-grid {
+    grid-auto-columns: min(78%, 290px);
+  }
 }
 
 @media (max-width: 570px) {
+  .alafiat-wrapper .alafiat-partner-logo {
+    height: 92px;
+    padding: 14px 16px;
+  }
+
+  .alafiat-wrapper .alafiat-partner-logo img {
+    max-height: 54px;
+  }
+
   .alafiat-wrapper .alafiat-footer-main {
     grid-template-columns: minmax(0, 1fr);
   }

@@ -12,8 +12,8 @@ function alafiat_seed_data() {
             'slug'    => 'madu-sirup-herbal',
             'sediaan' => 'madu',
             'excerpt' => 'Madu murni alami, sirup ekstrak rempah, formula lambung, pereda batuk, dan madu wanita berizin BPOM TR & Halal.',
-            'content' => 'Layanan maklon sediaan cairan obat dalam berupa madu murni dan sirup ekstrak rempah herbal. Diproduksi di ruang bersih berstandar CPOTB dengan uji laboratorium stabilitas dan cemaran mikroba terjamin. MOQ mulai 250 botol.',
-            'moq'     => 'Mulai 250 botol',
+            'content' => 'Layanan maklon sediaan cairan obat dalam berupa madu murni dan sirup ekstrak rempah herbal. Diproduksi di ruang bersih berstandar CPOTB dengan uji laboratorium stabilitas dan cemaran mikroba terjamin.',
+            'moq'     => '',
             'izin'    => 'BPOM TR & Halal',
             'kemasan' => 'Botol kaca atau plastik segel',
             'jalur'   => 'Take Over & Custom'
@@ -24,7 +24,7 @@ function alafiat_seed_data() {
             'sediaan' => 'kapsul',
             'excerpt' => 'Kapsul ekstrak serbuk rempah dan kapsul minyak (habbatussauda, minyak ikan gabus) berstandar CPOTB BPOM TR.',
             'content' => 'Sediaan kapsul herbal dengan cangkang gelatin halal atau vegetarian. Mesin pengisian kapsul otomatis memastikan keseragaman bobot dan dosis bahan aktif terukur. Tersedia jalur Take Over siap edar maupun formulasi kustom eksklusif.',
-            'moq'     => 'Mulai 250 botol',
+            'moq'     => '',
             'izin'    => 'BPOM TR & Halal',
             'kemasan' => 'Botol HDPE, amber, blister',
             'jalur'   => 'Take Over & Custom'
@@ -35,7 +35,7 @@ function alafiat_seed_data() {
             'sediaan' => 'susu',
             'excerpt' => 'Susu kambing etawa murni tanpa bau prengus dan serbuk rempah fungsional berkhasiat dengan izin resmi BPOM TR.',
             'content' => 'Sediaan serbuk oral susu kambing etawa dan minuman serbuk fungsional berkhasiat (jahe merah, temulawak, kurma). Proses homogenisasi modern memastikan serbuk mudah larut dan tidak menggumpal. Terdaftar resmi kategori obat tradisional BPOM TR.',
-            'moq'     => 'Mulai 250 boks',
+            'moq'     => '',
             'izin'    => 'BPOM TR & Halal',
             'kemasan' => 'Pouch, sachet, box karton',
             'jalur'   => 'Siap Edar & Custom'
@@ -46,7 +46,7 @@ function alafiat_seed_data() {
             'sediaan' => 'minyak',
             'excerpt' => 'Virgin Coconut Oil cold-pressed murni, minyak zaitun, habbatussauda, dan minyak gosok aromaterapi pereda pegal.',
             'content' => 'Sediaan minyak nabati murni untuk konsumsi obat dalam maupun cairan obat luar. Diproses higienis dengan kontrol mutu kadar air dan asam lemak bebas (FFA) rendah untuk daya simpan maksimal.',
-            'moq'     => 'Mulai 250 botol',
+            'moq'     => '',
             'izin'    => 'BPOM TR & Halal',
             'kemasan' => 'Botol pipet, segel aluminium, roll-on',
             'jalur'   => 'Take Over & Custom'
@@ -57,7 +57,7 @@ function alafiat_seed_data() {
             'sediaan' => 'lainnya',
             'excerpt' => 'Simplisia teh celup kantong higienis, krim herbal perawatan kulit, dan gel pereda sendi cepat meresap.',
             'content' => 'Sediaan khusus fasilitas CPOTB meliputi teh herbal rajangan daun kelor/jati cina serta sediaan oles semi padat (krim, salep, gel herbal). Disesuaikan dengan riset formula dan target pasar spesifik brand Anda.',
-            'moq'     => 'Menyesuaikan bahan',
+            'moq'     => '',
             'izin'    => 'BPOM TR & Halal',
             'kemasan' => 'Kantong celup, pouch, pot krim, tube',
             'jalur'   => 'Custom R&D Formulasi'

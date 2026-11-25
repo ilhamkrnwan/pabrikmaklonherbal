@@ -12,7 +12,6 @@
       summary: 'Madu murni dan sirup ekstrak rempah.',
       specs: [
         { label: 'Izin', value: 'BPOM TR & Halal', accent: true },
-        { label: 'MOQ', value: 'Mulai 250 botol', accent: true },
         { label: 'Kemasan', value: 'Botol kaca atau plastik', accent: false },
         { label: 'Jalur', value: 'Take Over & Custom', accent: false }
       ],
@@ -53,7 +52,6 @@
       summary: 'Kapsul ekstrak kering atau isian minyak.',
       specs: [
         { label: 'Izin', value: 'BPOM TR & Halal', accent: true },
-        { label: 'MOQ', value: 'Mulai 250 botol', accent: true },
         { label: 'Kemasan', value: 'Botol HDPE, amber, blister', accent: false },
         { label: 'Jalur', value: 'Take Over & Custom', accent: false }
       ],
@@ -94,7 +92,6 @@
       summary: 'Susu etawa dan serbuk jahe, temulawak, atau kurma.',
       specs: [
         { label: 'Izin', value: 'BPOM TR & Halal', accent: true },
-        { label: 'MOQ', value: 'Mulai 250 box', accent: true },
         { label: 'Kemasan', value: 'Pouch, sachet, box karton', accent: false },
         { label: 'Jalur', value: 'Siap Edar & Custom', accent: false }
       ],
@@ -135,7 +132,6 @@
       summary: 'VCO, zaitun, habbatussauda, dan minyak oles.',
       specs: [
         { label: 'Izin', value: 'BPOM TR & Halal', accent: true },
-        { label: 'MOQ', value: 'Mulai 250 botol', accent: true },
         { label: 'Kemasan', value: 'Botol segel, pipet, roll-on', accent: false },
         { label: 'Jalur', value: 'Take Over & Custom', accent: false }
       ],
@@ -176,7 +172,6 @@
       summary: 'Teh celup, krim, salep, dan gel herbal.',
       specs: [
         { label: 'Izin', value: 'BPOM TR & Halal', accent: true },
-        { label: 'MOQ', value: 'Menyesuaikan bahan', accent: true },
         { label: 'Kemasan', value: 'Kantong celup, pouch, pot, tube', accent: false },
         { label: 'Jalur', value: 'Custom R&D Formulasi', accent: false }
       ],
