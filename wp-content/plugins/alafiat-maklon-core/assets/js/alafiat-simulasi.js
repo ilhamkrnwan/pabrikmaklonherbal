@@ -36,6 +36,13 @@
     var sediaanGrid = document.getElementById('sediaan-grid');
     var emptyBox = document.getElementById('sediaan-empty');
     var resetFilterBtn = document.getElementById('reset-sediaan-filter');
+    var mobileCatalog = window.matchMedia('(max-width: 740px)');
+    var currentFilter = 'all';
+    var currentPage = 1;
+    var pager;
+    var previousPage;
+    var nextPage;
+    var pageStatus;
     var initialTab = tabButtons.find(function (btn) {
       return btn.getAttribute('aria-pressed') === 'true' || btn.getAttribute('aria-selected') === 'true';
     }) || tabButtons[0];
@@ -46,8 +53,79 @@
       initialTab.parentElement.setAttribute('aria-label', 'Filter bentuk sediaan');
     }
 
+    function goToCatalogPage(offset) {
+      currentPage += offset;
+      renderCatalog();
+      sediaanGrid.focus({ preventScroll: true });
+      sediaanGrid.scrollIntoView({ block: 'start' });
+    }
+
+    function renderCatalog() {
+      var matches = sediaanCards.filter(function (card) {
+        return currentFilter === 'all' || card.dataset.category === currentFilter;
+      });
+      var mobile = mobileCatalog.matches;
+      var pageSize = 6;
+      var pageCount = mobile ? 1 : Math.max(1, Math.ceil(matches.length / pageSize));
+      currentPage = Math.min(currentPage, pageCount);
+      var start = (currentPage - 1) * pageSize;
+      var visible = new Set(mobile ? matches : matches.slice(start, start + pageSize));
+
+      sediaanCards.forEach(function (card) {
+        card.hidden = !visible.has(card);
+        card.classList.toggle('hidden', card.hidden);
+      });
+
+      if (sediaanGrid) {
+        sediaanGrid.scrollLeft = 0;
+        sediaanGrid.tabIndex = mobile && visible.size > 1 ? 0 : -1;
+        sediaanGrid.setAttribute('role', 'region');
+        sediaanGrid.setAttribute('aria-label', 'Daftar sediaan');
+      }
+
+      if (!emptyBox && sediaanGrid && !matches.length) {
+        emptyBox = document.createElement('p');
+        emptyBox.id = 'sediaan-empty';
+        emptyBox.setAttribute('role', 'status');
+        emptyBox.textContent = 'Belum ada sediaan dalam kategori ini.';
+        sediaanGrid.after(emptyBox);
+      }
+
+      if (emptyBox) {
+        emptyBox.hidden = matches.length > 0;
+        emptyBox.classList.toggle('hidden', emptyBox.hidden);
+      }
+
+      if (!pager && sediaanGrid && pageCount > 1) {
+        pager = document.createElement('nav');
+        pager.className = 'alafiat-pagination';
+        pager.setAttribute('aria-label', 'Halaman daftar sediaan');
+        previousPage = document.createElement('button');
+        nextPage = document.createElement('button');
+        pageStatus = document.createElement('span');
+        previousPage.type = nextPage.type = 'button';
+        previousPage.textContent = 'Sebelumnya';
+        nextPage.textContent = 'Berikutnya';
+        previousPage.setAttribute('aria-controls', sediaanGrid.id);
+        nextPage.setAttribute('aria-controls', sediaanGrid.id);
+        pageStatus.setAttribute('aria-live', 'polite');
+        previousPage.addEventListener('click', function () { goToCatalogPage(-1); });
+        nextPage.addEventListener('click', function () { goToCatalogPage(1); });
+        pager.append(previousPage, pageStatus, nextPage);
+        sediaanGrid.after(pager);
+      }
+
+      if (pager) {
+        pager.hidden = pageCount < 2;
+        previousPage.disabled = currentPage === 1;
+        nextPage.disabled = currentPage === pageCount;
+        pageStatus.textContent = 'Halaman ' + currentPage + ' dari ' + pageCount;
+      }
+    }
+
     function applyTabFilter(filterKey) {
-      var visibleCount = 0;
+      currentFilter = filterKey;
+      currentPage = 1;
       tabButtons.forEach(function (btn) {
         var isActive = btn.dataset.tabFilter === filterKey;
         btn.removeAttribute('aria-selected');
@@ -60,26 +138,7 @@
         btn.classList.toggle('text-inkMuted', !isActive);
       });
 
-      sediaanCards.forEach(function (card) {
-        var match = filterKey === 'all' || card.dataset.category === filterKey;
-        card.hidden = !match;
-        card.classList.toggle('hidden', !match);
-        if (match) visibleCount += 1;
-      });
-
-      if (!emptyBox && sediaanGrid && visibleCount === 0) {
-        emptyBox = document.createElement('p');
-        emptyBox.id = 'sediaan-empty';
-        emptyBox.setAttribute('role', 'status');
-        emptyBox.textContent = 'Belum ada sediaan dalam kategori ini.';
-        sediaanGrid.after(emptyBox);
-      }
-
-      if (emptyBox) {
-        var hasResults = visibleCount > 0;
-        emptyBox.hidden = hasResults;
-        emptyBox.classList.toggle('hidden', hasResults);
-      }
+      renderCatalog();
     }
 
     tabButtons.forEach(function (btn, idx) {
@@ -100,6 +159,12 @@
     });
 
     if (initialTab) applyTabFilter(initialTab.dataset.tabFilter);
+    if (sediaanGrid) {
+      mobileCatalog.addEventListener('change', function () {
+        currentPage = 1;
+        renderCatalog();
+      });
+    }
 
     document.querySelectorAll('[data-jump-tab]').forEach(function (jumpLink) {
       jumpLink.addEventListener('click', function () {

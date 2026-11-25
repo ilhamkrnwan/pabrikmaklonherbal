@@ -70,6 +70,13 @@ function alafiat_register_cpt_produk_maklon() {
 }
 add_action('init', 'alafiat_register_cpt_produk_maklon');
 
+function alafiat_limit_product_archive($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_post_type_archive('produk_maklon') && !$query->is_feed()) {
+        $query->set('posts_per_archive_page', 6);
+    }
+}
+add_action('pre_get_posts', 'alafiat_limit_product_archive');
+
 function alafiat_product_query_vars($query_vars) {
     $query_vars[] = 'alafiat_legacy_product';
     return $query_vars;
@@ -164,19 +171,89 @@ function alafiat_archive_photo_fallback($content, $block, $instance) {
 }
 add_filter('render_block_core/post-featured-image', 'alafiat_archive_photo_fallback', 10, 3);
 
+function alafiat_product_card_meta($post_id) {
+    $minimum = preg_replace('/^Mulai\s+/i', '', (string) get_post_meta($post_id, '_alafiat_moq', true));
+    $permit = get_post_meta($post_id, '_alafiat_izin', true);
+    $facts = array_filter(array($minimum !== '' ? 'MOQ ' . $minimum : '', $permit));
+    return $facts ? '<p class="alafiat-archive-meta">' . esc_html(implode(' · ', $facts)) . '</p>' : '';
+}
+
 function alafiat_archive_title_facts($content, $block, $instance) {
     if (($block['attrs']['className'] ?? '') !== 'alafiat-archive-title'
         || ($instance->context['postType'] ?? '') !== 'produk_maklon') {
         return $content;
     }
 
-    $post_id = (int) ($instance->context['postId'] ?? 0);
-    $minimum = preg_replace('/^Mulai\s+/i', '', (string) get_post_meta($post_id, '_alafiat_moq', true));
-    $permit = get_post_meta($post_id, '_alafiat_izin', true);
-    $facts = array_filter(array($minimum !== '' ? 'MOQ ' . $minimum : '', $permit));
-    return $facts ? '<p class="alafiat-archive-meta">' . esc_html(implode(' · ', $facts)) . '</p>' . $content : $content;
+    return alafiat_product_card_meta((int) ($instance->context['postId'] ?? 0)) . $content;
 }
 add_filter('render_block_core/post-title', 'alafiat_archive_title_facts', 10, 3);
+
+function alafiat_get_related_products($post_id) {
+    $terms = get_the_terms($post_id, 'kategori_sediaan');
+    $args = array(
+        'post_type' => 'produk_maklon',
+        'post_status' => 'publish',
+        'has_password' => false,
+        'numberposts' => 3,
+        'exclude' => array($post_id),
+        'orderby' => array('date' => 'DESC', 'ID' => 'DESC'),
+    );
+    $related = array();
+
+    if ($terms && !is_wp_error($terms)) {
+        $related = get_posts(array_merge($args, array(
+            'tax_query' => array(array(
+                'taxonomy' => 'kategori_sediaan',
+                'field' => 'term_id',
+                'terms' => wp_list_pluck($terms, 'term_id'),
+            )),
+        )));
+    }
+
+    // Use other catalog products when the current category has fewer than three.
+    if (count($related) < 3) {
+        $args['numberposts'] -= count($related);
+        $args['exclude'] = array_merge($args['exclude'], wp_list_pluck($related, 'ID'));
+        $related = array_merge($related, get_posts($args));
+    }
+
+    return $related;
+}
+
+function alafiat_render_related_products($post_id) {
+    $products = alafiat_get_related_products($post_id);
+    if (!$products) {
+        return;
+    }
+    ?>
+    <section class="alafiat-product-related" aria-labelledby="alafiat-related-title">
+        <h2 id="alafiat-related-title">Produk Terkait</h2>
+        <ul class="alafiat-archive-grid">
+            <?php foreach ($products as $product) :
+                $title = get_the_title($product);
+                $url = get_permalink($product);
+                $photo = alafiat_product_photo($product->ID);
+                $summary = $product->post_excerpt ?: excerpt_remove_blocks(strip_shortcodes($product->post_content));
+                $summary = wp_trim_words($summary, 28);
+                ?>
+                <li>
+                    <?php if ($photo !== '') : ?>
+                        <figure class="alafiat-archive-photo"><?php echo $photo; ?></figure>
+                    <?php endif; ?>
+                    <article class="alafiat-archive-info">
+                        <?php echo alafiat_product_card_meta($product->ID); ?>
+                        <h3 class="alafiat-archive-title"><?php echo esc_html($title); ?></h3>
+                        <?php if ($summary !== '') : ?>
+                            <p class="alafiat-archive-excerpt"><?php echo esc_html($summary); ?></p>
+                        <?php endif; ?>
+                        <a class="alafiat-archive-arrow" href="<?php echo esc_url($url); ?>" aria-label="<?php echo esc_attr('Lihat produk: ' . $title); ?>"></a>
+                    </article>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </section>
+    <?php
+}
 
 /**
  * Render the product body with its configured sediaan data.
@@ -244,6 +321,16 @@ function alafiat_single_produk_content($content) {
                 <ul id="preview-details-list" class="alafiat-catalog-detail-list"></ul>
             </section>
         <?php endif; ?>
+        <?php if ($whatsapp_url !== '') : ?>
+            <section class="alafiat-product-consultation" aria-labelledby="alafiat-consultation-title">
+                <div>
+                    <h2 id="alafiat-consultation-title">Siap mulai produksi?</h2>
+                    <p>Diskusikan formula, kemasan, dan jumlah produksi dengan tim Al Afiat.</p>
+                </div>
+                <a href="<?php echo esc_url($whatsapp_url); ?>" target="_blank" rel="noopener noreferrer" class="alafiat-product-cta">Konsultasi via WhatsApp</a>
+            </section>
+        <?php endif; ?>
+        <?php alafiat_render_related_products($post_id); ?>
     </div>
     <?php
     return ob_get_clean();

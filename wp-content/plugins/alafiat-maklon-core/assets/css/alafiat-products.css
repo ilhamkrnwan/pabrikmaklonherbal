@@ -211,7 +211,7 @@ body.alafiat-body {
   font-size: 0.875rem;
 }
 
-.alafiat-product-archive .alafiat-archive-grid {
+.alafiat-product-page .alafiat-archive-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 28px 24px;
@@ -219,7 +219,7 @@ body.alafiat-body {
   list-style: none;
 }
 
-.alafiat-product-archive .alafiat-archive-grid > li {
+.alafiat-product-page .alafiat-archive-grid > li {
   min-width: 0;
   margin-block: 0;
 }
@@ -239,25 +239,27 @@ body.alafiat-body {
   object-fit: cover;
 }
 
-.alafiat-product-archive .alafiat-archive-info {
+.alafiat-product-page .alafiat-archive-info {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 44px;
   align-content: start;
   gap: 4px 12px;
 }
 
-.alafiat-product-archive .alafiat-archive-info > :is(.alafiat-archive-meta, .alafiat-archive-title, .alafiat-archive-excerpt, .alafiat-archive-arrow) {
+.alafiat-product-page .alafiat-archive-info > :is(.alafiat-archive-meta, .alafiat-archive-title, .alafiat-archive-excerpt, .alafiat-archive-arrow) {
   margin: 0;
 }
 
 .alafiat-archive-meta {
   grid-column: 1 / -1;
+  grid-row: 1;
   color: var(--ink-secondary);
   font-size: 0.75rem;
 }
 
 .alafiat-archive-title {
   grid-column: 1;
+  grid-row: 2;
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.3;
@@ -265,6 +267,7 @@ body.alafiat-body {
 
 .alafiat-archive-excerpt {
   grid-column: 1;
+  grid-row: 3;
   color: var(--ink-secondary);
   font-size: 0.875rem;
 }
@@ -283,10 +286,52 @@ body.alafiat-body {
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 960px) {
-  .alafiat-product-archive .alafiat-archive-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.alafiat-single-product > :is(.alafiat-product-consultation, .alafiat-product-related),
+.alafiat-product-archive > .alafiat-archive-consultation {
+  margin-block-start: clamp(36px, 6vw, 76px);
+}
+
+.alafiat-product-consultation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 32px;
+  padding: clamp(24px, 5vw, 52px);
+  border-radius: 16px;
+  background: var(--brand-pine);
+  color: var(--ink-on-dark);
+}
+
+.alafiat-product-page :is(.alafiat-product-consultation, .alafiat-product-related) h2 {
+  margin: 0;
+  font-size: clamp(1.75rem, 4vw, 2.625rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.alafiat-product-consultation p {
+  margin: 8px 0 0;
+  color: var(--ink-muted-dark);
+}
+
+.alafiat-product-consultation .alafiat-product-cta {
+  --alafiat-button-ink: var(--alafiat-accent);
+  --alafiat-button-inverse: var(--brand-pine);
+  --alafiat-button-hover-fill: var(--ink-on-dark);
+}
+
+.alafiat-archive-consultation > .alafiat-product-cta {
+  margin-block-start: 0;
+}
+
+.alafiat-product-page .alafiat-product-consultation a:focus-visible {
+  outline-color: var(--alafiat-button-ink);
+}
+
+.alafiat-product-related .alafiat-archive-grid {
+  margin: clamp(16px, 3vw, 28px) 0 0;
 }
 
 @media (max-width: 740px) {
@@ -294,9 +339,33 @@ body.alafiat-body {
   .alafiat-catalog-detail-list {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  .alafiat-product-archive .alafiat-archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .alafiat-product-related .alafiat-archive-grid {
+    min-inline-size: 0;
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    grid-auto-columns: min(84%, 390px);
+    gap: 16px;
+    overflow-x: auto;
+    padding: 4px 4px 12px;
+    scroll-padding-inline: 4px;
+    scroll-snap-type: x proximity;
+  }
+
+  .alafiat-product-related .alafiat-archive-grid:has(> :only-child) {
+    grid-auto-columns: minmax(0, 1fr);
+  }
+
+  .alafiat-product-related .alafiat-archive-grid > li {
+    scroll-snap-align: start;
+  }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   .alafiat-product-archive .alafiat-archive-grid {
     grid-template-columns: minmax(0, 1fr);
   }

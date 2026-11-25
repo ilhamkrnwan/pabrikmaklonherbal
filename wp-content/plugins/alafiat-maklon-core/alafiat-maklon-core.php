@@ -39,7 +39,7 @@ function alafiat_enqueue_assets() {
         'alafiat-core-css',
         ALAFIAT_CORE_URL . 'assets/css/alafiat.css',
         array(),
-        '1.0.2'
+        '1.0.3'
     );
 
     $is_block_landing = is_front_page() && has_block('alafiat/landing-element', get_queried_object_id());
@@ -51,7 +51,7 @@ function alafiat_enqueue_assets() {
             'alafiat-landing-css',
             ALAFIAT_CORE_URL . 'assets/css/alafiat-landing.css',
             $is_block_landing ? array('alafiat-core-css', 'alafiat-landing-utilities-css') : array('alafiat-core-css'),
-            '1.3.6'
+            '1.3.7'
         );
     }
 
@@ -60,7 +60,7 @@ function alafiat_enqueue_assets() {
             'alafiat-products-css',
             ALAFIAT_CORE_URL . 'assets/css/alafiat-products.css',
             array('alafiat-core-css'),
-            '1.1.3'
+            '1.1.5'
         );
     }
 
@@ -80,7 +80,7 @@ function alafiat_enqueue_assets() {
         'alafiat-simulasi-js',
         ALAFIAT_CORE_URL . 'assets/js/alafiat-simulasi.js',
         array(),
-        '1.1.0',
+        '1.2.0',
         true
     );
 
@@ -89,7 +89,7 @@ function alafiat_enqueue_assets() {
         'alafiat-viewer-js',
         ALAFIAT_CORE_URL . 'assets/js/alafiat-viewer.js',
         array(),
-        '1.2.0',
+        '1.2.1',
         true
     );
 
@@ -119,14 +119,14 @@ function alafiat_enqueue_landing_editor_assets() {
         return;
     }
 
-    wp_enqueue_style('alafiat-editor-core-css', ALAFIAT_CORE_URL . 'assets/css/alafiat.css', array(), '1.0.2');
-    wp_enqueue_style('alafiat-editor-products-css', ALAFIAT_CORE_URL . 'assets/css/alafiat-products.css', array('alafiat-editor-core-css'), '1.1.3');
+    wp_enqueue_style('alafiat-editor-core-css', ALAFIAT_CORE_URL . 'assets/css/alafiat.css', array(), '1.0.3');
+    wp_enqueue_style('alafiat-editor-products-css', ALAFIAT_CORE_URL . 'assets/css/alafiat-products.css', array('alafiat-editor-core-css'), '1.1.5');
     wp_enqueue_style('alafiat-editor-utilities-css', ALAFIAT_CORE_URL . 'assets/css/alafiat-editor-utilities.css', array(), '1.0.1');
     wp_enqueue_style(
         'alafiat-editor-landing-css',
         ALAFIAT_CORE_URL . 'assets/css/alafiat-landing.css',
         array('alafiat-editor-core-css', 'alafiat-editor-utilities-css'),
-        '1.3.6'
+        '1.3.7'
     );
 }
 add_action('enqueue_block_assets', 'alafiat_enqueue_landing_editor_assets');

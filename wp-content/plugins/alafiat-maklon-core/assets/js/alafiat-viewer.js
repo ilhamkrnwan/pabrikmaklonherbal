@@ -224,7 +224,7 @@
     var conceptPickerEl = document.getElementById('preview-concept-picker');
     var conceptDescriptionEl = document.getElementById('preview-concept-description');
     var detailsListEl = document.getElementById('preview-details-list');
-    var waMainCta = document.getElementById('preview-wa-cta');
+    var whatsappCtas = document.querySelectorAll('#preview-wa-cta, .alafiat-product-consultation .alafiat-product-cta');
     var tabButtons = Array.from(document.querySelectorAll('.cat-tab'));
     var singleViewer = document.querySelector('[data-alafiat-product-category]');
 
@@ -254,11 +254,12 @@
       var mainMsg =
         'Halo Tim Konsultan Maklon Al Afiat, saya sedang melihat katalog produk ' + data.title +
         ' (konsep: ' + conceptTitle + '). Mohon info detail sediaan, sampel, dan estimasi biaya maklonnya.';
-      if (waMainCta) {
-        waMainCta.setAttribute('href', buildWhatsAppUrl(mainMsg));
-        waMainCta.setAttribute('target', '_blank');
-        waMainCta.setAttribute('rel', 'noopener noreferrer');
-      }
+      var url = buildWhatsAppUrl(mainMsg);
+      whatsappCtas.forEach(function (cta) {
+        cta.setAttribute('href', url);
+        cta.setAttribute('target', '_blank');
+        cta.setAttribute('rel', 'noopener noreferrer');
+      });
     }
 
     function renderConceptPicker(data) {

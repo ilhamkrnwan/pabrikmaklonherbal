@@ -13,6 +13,7 @@
   --brand-olive: #7C9C26;
   --brand-olive-bright: #C5E25C;
   --brand-olive-dark: #4B6310;
+  --alafiat-accent: #dce9a9;
   --ink-primary: #131B1A;
   --ink-secondary: #475552;
   --ink-on-dark: #FFFFFF;
@@ -227,6 +228,51 @@ html.dark .text-pine {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.alafiat-pagination:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  margin-block-start: 24px;
+  color: var(--brand-pine);
+  font-size: 0.875rem;
+}
+
+.alafiat-pagination .wp-block-query-pagination-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+}
+
+.alafiat-pagination :is(button, a, .page-numbers.current) {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--alafiat-button-size);
+  min-block-size: var(--alafiat-button-size);
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px solid var(--alafiat-button-muted-border);
+  border-radius: var(--alafiat-button-radius);
+  background: transparent;
+  color: var(--brand-pine);
+  text-decoration: none;
+}
+
+.alafiat-pagination :is(button:not(:disabled):hover, a:hover, .page-numbers.current) {
+  border-color: var(--brand-pine);
+  background: var(--brand-pine);
+  color: var(--ink-on-dark);
+}
+
+.alafiat-pagination button:disabled {
+  opacity: 0.52;
+  cursor: default;
 }
 
 /* Sticky Bottom Floating Bar */
