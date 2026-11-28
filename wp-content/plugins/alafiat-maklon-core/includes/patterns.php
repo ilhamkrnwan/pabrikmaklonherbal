@@ -28,7 +28,7 @@ function alafiat_render_landing_page_shortcode() {
         <!-- HEADER NAV -->
         <header class="bg-panel rounded-[20px] p-4 flex items-center justify-between border border-subtle shadow-sm">
             <div class="flex items-center gap-3">
-                <img src="/wp-content/uploads/alafiat/simbol-pabrik-maklon-herbal.svg" alt="Logo Al Afiat" class="w-10 h-10 object-contain" />
+                <img src="/wp-content/uploads/alafiat/logo-al-afiat.png" alt="Logo Al Afiat" class="w-10 h-10 object-contain" />
                 <div>
                     <span class="font-bold text-lg text-ink block leading-tight"><?php echo $company; ?></span>
                     <span class="text-xs text-inkMuted block">Pabrik Maklon Herbal CPOTB BPOM</span>

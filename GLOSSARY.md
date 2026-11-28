@@ -25,8 +25,12 @@ Bentuk fisik dan farmasetis dari produk herbal yang diproduksi (misal: Kapsul, C
 _Avoid_: Jenis barang, varian rasa, tipe produk
 
 **MOQ (Minimum Order Quantity)**:
-Batas minimum jumlah botol/boks/pcs yang diproduksi dalam satu kali *batch* produksi pabrik (starter mulai 250 pcs).
+Batas minimum jumlah unit/batch yang diproduksi dalam satu kali *batch* produksi pabrik, menyesuaikan bentuk sediaan dan jalur maklon.
 _Avoid_: Minimal order toko, batas kuota
+
+**Modal Detail Gambar**:
+Tampilan dialog pratinjau yang muncul saat gambar konten diklik untuk memperbesar visual beserta keterangan kontekstual dan tautan dokumen atau produk terkait.
+_Avoid_: Popup iklan, galeri terpisah
 
 **Simplisia**:
 Bahan alami dari tumbuhan, hewan, atau mineral yang belum mengalami pengolahan kimiawi dan digunakan sebagai bahan baku formulasi herbal.

@@ -256,6 +256,70 @@
 
     // 3. FAQ ACCORDION
     var faqTriggers = Array.from(document.querySelectorAll('.faq-trigger'));
+    var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function toggleFaqPanel(panel, expand) {
+      if (!panel) return;
+      if (reducedMotion) {
+        panel.classList.toggle('hidden', !expand);
+        return;
+      }
+
+      if (panel._faqEndHandler) {
+        panel.removeEventListener('transitionend', panel._faqEndHandler);
+        panel._faqEndHandler = null;
+      }
+
+      if (expand) {
+        panel.classList.remove('hidden');
+        panel.style.height = '0px';
+        panel.style.opacity = '0';
+        panel.style.overflow = 'hidden';
+        panel.style.paddingTop = '0px';
+        panel.style.paddingBottom = '0px';
+        void panel.offsetHeight;
+
+        panel.style.paddingTop = '';
+        panel.style.paddingBottom = '';
+        var targetHeight = panel.scrollHeight;
+        panel.style.height = targetHeight + 'px';
+        panel.style.opacity = '1';
+
+        panel._faqEndHandler = function (e) {
+          if (e.propertyName !== 'height') return;
+          panel.style.height = '';
+          panel.style.opacity = '';
+          panel.style.overflow = '';
+          panel.removeEventListener('transitionend', panel._faqEndHandler);
+          panel._faqEndHandler = null;
+        };
+        panel.addEventListener('transitionend', panel._faqEndHandler);
+      } else {
+        panel.style.height = panel.scrollHeight + 'px';
+        panel.style.opacity = '1';
+        panel.style.overflow = 'hidden';
+        void panel.offsetHeight;
+
+        panel.style.height = '0px';
+        panel.style.opacity = '0';
+        panel.style.paddingTop = '0px';
+        panel.style.paddingBottom = '0px';
+
+        panel._faqEndHandler = function (e) {
+          if (e.propertyName !== 'height') return;
+          panel.classList.add('hidden');
+          panel.style.height = '';
+          panel.style.opacity = '';
+          panel.style.overflow = '';
+          panel.style.paddingTop = '';
+          panel.style.paddingBottom = '';
+          panel.removeEventListener('transitionend', panel._faqEndHandler);
+          panel._faqEndHandler = null;
+        };
+        panel.addEventListener('transitionend', panel._faqEndHandler);
+      }
+    }
+
     faqTriggers.forEach(function (trigger) {
       var icon = trigger.querySelector('span + span');
       if (icon) icon.setAttribute('aria-hidden', 'true');
@@ -264,9 +328,7 @@
         var panelId = trigger.getAttribute('aria-controls');
         var panel = document.getElementById(panelId);
         trigger.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-        if (panel) {
-          panel.classList.toggle('hidden', isExpanded);
-        }
+        toggleFaqPanel(panel, !isExpanded);
       });
     });
 

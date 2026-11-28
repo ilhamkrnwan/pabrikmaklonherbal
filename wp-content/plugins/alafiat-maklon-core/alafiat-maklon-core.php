@@ -39,7 +39,7 @@ function alafiat_enqueue_assets() {
         'alafiat-core-css',
         ALAFIAT_CORE_URL . 'assets/css/alafiat.css',
         array(),
-        '1.0.4'
+        '1.1.2'
     );
 
     $is_block_landing = is_front_page() && has_block('alafiat/landing-element', get_queried_object_id());
@@ -51,7 +51,7 @@ function alafiat_enqueue_assets() {
             'alafiat-landing-css',
             ALAFIAT_CORE_URL . 'assets/css/alafiat-landing.css',
             $is_block_landing ? array('alafiat-core-css', 'alafiat-landing-utilities-css') : array('alafiat-core-css'),
-            '1.4.2'
+            '1.5.1'
         );
     }
 
@@ -60,7 +60,7 @@ function alafiat_enqueue_assets() {
             'alafiat-products-css',
             ALAFIAT_CORE_URL . 'assets/css/alafiat-products.css',
             array('alafiat-core-css'),
-            '1.1.5'
+            '1.2.1'
         );
     }
 
@@ -80,7 +80,7 @@ function alafiat_enqueue_assets() {
         'alafiat-simulasi-js',
         ALAFIAT_CORE_URL . 'assets/js/alafiat-simulasi.js',
         array(),
-        '1.2.0',
+        '1.3.0',
         true
     );
 
@@ -93,28 +93,12 @@ function alafiat_enqueue_assets() {
         true
     );
 
-    // 6. GSAP & Smooth ScrollTrigger Animations
-    wp_enqueue_script(
-        'alafiat-gsap',
-        ALAFIAT_CORE_URL . 'assets/vendor/gsap/gsap.min.js',
-        array(),
-        '3.15.1',
-        true
-    );
-
-    wp_enqueue_script(
-        'alafiat-gsap-scrolltrigger',
-        ALAFIAT_CORE_URL . 'assets/vendor/gsap/ScrollTrigger.min.js',
-        array('alafiat-gsap'),
-        '3.15.1',
-        true
-    );
-
+    // 6. CSS-Native UI/UX Animations & Contextual Image Detail Modal
     wp_enqueue_script(
         'alafiat-animations-js',
         ALAFIAT_CORE_URL . 'assets/js/alafiat-animations.js',
-        array('alafiat-gsap', 'alafiat-gsap-scrolltrigger', 'alafiat-simulasi-js'),
-        '1.1.0',
+        array('alafiat-simulasi-js'),
+        '2.3.1',
         true
     );
 
@@ -144,14 +128,14 @@ function alafiat_enqueue_landing_editor_assets() {
         return;
     }
 
-    wp_enqueue_style('alafiat-editor-core-css', ALAFIAT_CORE_URL . 'assets/css/alafiat.css', array(), '1.0.3');
-    wp_enqueue_style('alafiat-editor-products-css', ALAFIAT_CORE_URL . 'assets/css/alafiat-products.css', array('alafiat-editor-core-css'), '1.1.5');
+    wp_enqueue_style('alafiat-editor-core-css', ALAFIAT_CORE_URL . 'assets/css/alafiat.css', array(), '1.0.5');
+    wp_enqueue_style('alafiat-editor-products-css', ALAFIAT_CORE_URL . 'assets/css/alafiat-products.css', array('alafiat-editor-core-css'), '1.1.6');
     wp_enqueue_style('alafiat-editor-utilities-css', ALAFIAT_CORE_URL . 'assets/css/alafiat-editor-utilities.css', array(), '1.0.1');
     wp_enqueue_style(
         'alafiat-editor-landing-css',
         ALAFIAT_CORE_URL . 'assets/css/alafiat-landing.css',
         array('alafiat-editor-core-css', 'alafiat-editor-utilities-css'),
-        '1.4.2'
+        '1.4.4'
     );
 }
 add_action('enqueue_block_assets', 'alafiat_enqueue_landing_editor_assets');

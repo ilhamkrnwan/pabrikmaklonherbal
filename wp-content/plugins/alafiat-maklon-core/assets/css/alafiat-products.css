@@ -10,12 +10,16 @@ body.alafiat-body {
   padding: clamp(20px, 4vw, 56px) clamp(16px, 4vw, 48px);
 }
 
-.alafiat-product-hub > header > a,
-.alafiat-product-back a,
 .alafiat-product-link {
   color: var(--brand-pine);
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.alafiat-product-hub > header > a,
+.alafiat-product-back a {
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .alafiat-product-hub h1,
@@ -237,6 +241,36 @@ body.alafiat-body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .alafiat-product-page .alafiat-archive-grid > li {
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .alafiat-product-page .alafiat-archive-grid > li:hover {
+    transform: translateY(-4px);
+  }
+
+  .alafiat-archive-photo img,
+  .alafiat-single-photo img,
+  .alafiat-product-thumbnails img {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .alafiat-product-page .alafiat-archive-grid > li:hover .alafiat-archive-photo img,
+  .alafiat-single-photo:hover img,
+  .alafiat-product-thumbnails .thumb-btn:hover img {
+    transform: scale(1.04);
+  }
+
+  .alafiat-product-thumbnails .thumb-btn {
+    transition: border-color 0.2s ease, transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .alafiat-product-thumbnails .thumb-btn:hover {
+    transform: translateY(-2px);
+  }
 }
 
 .alafiat-product-page .alafiat-archive-info {

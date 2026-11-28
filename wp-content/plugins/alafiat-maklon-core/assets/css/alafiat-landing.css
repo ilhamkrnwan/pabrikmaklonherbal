@@ -66,7 +66,7 @@ div.alafiat-wrapper {
   min-inline-size: 0;
   margin-block-start: 0 !important; /* Replace the spacing utilities saved in the original page. */
   margin-block-end: var(--landing-end-margin, 0);
-  scroll-margin-top: 24px;
+  scroll-margin-top: calc(96px + var(--wp-admin--admin-bar--height, 0px));
 }
 
 .alafiat-wrapper .wp-block-image {
@@ -113,6 +113,9 @@ div.alafiat-wrapper {
 .alafiat-wrapper > header {
   --landing-end-margin: calc(8px - var(--landing-section-gap));
 
+  position: sticky;
+  top: var(--wp-admin--admin-bar--height, 0px);
+  z-index: 40;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -123,16 +126,42 @@ div.alafiat-wrapper {
   border-radius: 0;
   background: none;
   box-shadow: none;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease, padding 0.25s ease, border-color 0.25s ease;
+}
+
+.alafiat-wrapper > header.is-scrolled {
+  margin-inline: -16px;
+  padding-inline: 16px;
+  border-radius: 0 0 18px 18px;
+  background: rgba(244, 241, 234, 0.92);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px rgba(20, 40, 29, 0.08), inset 0 -1px 0 var(--landing-rule);
+}
+
+.editor-styles-wrapper .alafiat-wrapper > header {
+  position: static;
 }
 
 .alafiat-wrapper > header > div:first-child {
   min-width: 0;
 }
 
+.alafiat-wrapper > header .alafiat-landing-logo {
+  flex: 0 0 auto;
+}
+
 .alafiat-wrapper > header img {
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 180px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.alafiat-wrapper > header .alafiat-landing-logo.is-resized img {
+  max-width: 100%;
+  height: auto;
 }
 
 .alafiat-wrapper > header nav {
@@ -143,16 +172,36 @@ div.alafiat-wrapper {
 }
 
 .alafiat-wrapper > header nav a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   color: var(--landing-pine);
   text-underline-offset: 4px;
   white-space: nowrap;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-.alafiat-wrapper > header nav a:is(:hover, :focus-visible) {
-  text-decoration: underline;
+.alafiat-wrapper > header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--landing-pine);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.alafiat-wrapper > header nav a:is(:hover, :focus-visible, [aria-current="true"])::after {
+  transform: scaleX(1);
+}
+
+.alafiat-wrapper > header nav a[aria-current="true"] {
+  font-weight: 700;
 }
 
 .alafiat-wrapper > header [data-wa-cta] {
@@ -680,11 +729,27 @@ div.alafiat-wrapper {
   padding-bottom: clamp(20px, 2.2vw, 28px);
 }
 
-.alafiat-wrapper .alafiat-process-step:not(:last-child)::before {
+.alafiat-wrapper .alafiat-process-step:not(:last-child)::before,
+.alafiat-wrapper .alafiat-process-step:not(:last-child)::after {
   position: absolute;
   inset: 42px auto 0 20px;
-  border-left: 1px solid var(--landing-rule);
   content: "";
+}
+
+.alafiat-wrapper .alafiat-process-step:not(:last-child)::before {
+  border-left: 1px solid var(--landing-rule);
+}
+
+.alafiat-wrapper .alafiat-process-step:not(:last-child)::after {
+  width: 2px;
+  background: var(--landing-pine);
+  transform: scaleY(0);
+  transform-origin: top center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.alafiat-wrapper .alafiat-process-step.is-reached:not(:last-child)::after {
+  transform: scaleY(1);
 }
 
 .alafiat-wrapper .alafiat-process-number {
@@ -699,6 +764,48 @@ div.alafiat-wrapper {
   font-size: 0.875rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+  transition: background-color 0.35s ease, color 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.alafiat-wrapper .alafiat-process-step.is-reached .alafiat-process-number {
+  background: var(--landing-pine);
+  color: var(--landing-on-pine);
+  transform: scale(1.04);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .alafiat-wrapper :is(.alafiat-product-card, .alafiat-cert-card, .alafiat-portfolio-card, .alafiat-partner-card, #jalur-maklon > div, [data-alafiat-anchor="jalur-maklon"] > div) {
+    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.32s ease, border-color 0.25s ease;
+  }
+
+  .alafiat-wrapper :is(.alafiat-product-card, .alafiat-cert-card, .alafiat-portfolio-card, #jalur-maklon > div, [data-alafiat-anchor="jalur-maklon"] > div):hover {
+    transform: translateY(-4px);
+  }
+
+  .alafiat-wrapper :is(#jalur-maklon > div, [data-alafiat-anchor="jalur-maklon"] > div):hover {
+    box-shadow: 0 14px 32px rgba(21, 62, 55, 0.09);
+  }
+
+  .alafiat-wrapper .alafiat-partner-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .alafiat-wrapper .alafiat-partner-logo {
+    transition: border-color 0.25s ease, box-shadow 0.28s ease;
+  }
+
+  .alafiat-wrapper .alafiat-partner-card:hover .alafiat-partner-logo {
+    border-color: var(--landing-pine);
+    box-shadow: 0 10px 24px rgba(21, 62, 55, 0.08);
+  }
+
+  .alafiat-wrapper :is(.alafiat-product-card > .wp-block-image img, .alafiat-cert-photo img, .alafiat-portfolio-photo img, .alafiat-process-photo img) {
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .alafiat-wrapper :is(.alafiat-product-card:hover > .wp-block-image img, .alafiat-cert-card:hover .alafiat-cert-photo img, .alafiat-portfolio-card:hover .alafiat-portfolio-photo img, .alafiat-process-photo:hover img) {
+    transform: scale(1.04);
+  }
 }
 
 .alafiat-wrapper .alafiat-process-step > :is(h3, p) {
@@ -1019,6 +1126,12 @@ div.alafiat-wrapper {
   min-height: 54px;
   padding: 14px 4px;
   color: var(--landing-ink);
+  transition: color 0.2s ease, padding-left 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.alafiat-wrapper :is(#faq, [data-alafiat-anchor="faq"]) .faq-trigger:hover {
+  color: var(--landing-pine);
+  padding-left: 8px;
 }
 
 .alafiat-wrapper :is(#faq, [data-alafiat-anchor="faq"]) .faq-trigger > span:last-child {
@@ -1035,16 +1148,26 @@ div.alafiat-wrapper {
   height: 2px;
   background: currentColor;
   content: "";
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
 }
 
 .alafiat-wrapper :is(#faq, [data-alafiat-anchor="faq"]) .faq-trigger[aria-expanded="false"] > span:last-child::after {
   transform: rotate(90deg);
 }
 
+.alafiat-wrapper :is(#faq, [data-alafiat-anchor="faq"]) .faq-trigger[aria-expanded="true"] > span:last-child::after {
+  transform: rotate(0deg);
+}
+
 .alafiat-wrapper :is(#faq, [data-alafiat-anchor="faq"]) .faq-trigger + div {
   padding: 0 34px 16px 4px;
   border: 0;
   font-size: 0.9375rem;
+  transition:
+    height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.26s ease,
+    padding-top 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+    padding-bottom 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .alafiat-wrapper > footer {
@@ -1138,6 +1261,10 @@ div.alafiat-wrapper {
 }
 
 @media (max-width: 1060px) {
+  .alafiat-wrapper > .wp-block-group {
+    scroll-margin-top: calc(124px + var(--wp-admin--admin-bar--height, 0px));
+  }
+
   .alafiat-wrapper > header {
     grid-template-columns: minmax(0, 1fr) auto;
     row-gap: 2px;
@@ -1196,6 +1323,16 @@ div.alafiat-wrapper {
 }
 
 @media (max-width: 740px) {
+  .alafiat-wrapper > header nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .alafiat-wrapper > header nav::-webkit-scrollbar {
+    display: none;
+  }
   .alafiat-wrapper :is(#sediaan-grid, [data-alafiat-anchor="sediaan-grid"]) {
     min-inline-size: 0;
     grid-auto-flow: column;
@@ -1222,6 +1359,12 @@ div.alafiat-wrapper {
 
   .alafiat-wrapper .alafiat-cert-grid {
     grid-auto-columns: min(78%, 290px);
+  }
+}
+
+@media (max-width: 600px) {
+  .alafiat-wrapper > header {
+    top: 0;
   }
 }
 
@@ -1252,9 +1395,10 @@ div.alafiat-wrapper {
   }
 
   .alafiat-wrapper > header img {
-    flex-basis: 32px;
-    width: 32px;
-    height: 32px;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 140px;
+    height: 36px;
   }
 
   .alafiat-wrapper > header > div:first-child span:first-child {
